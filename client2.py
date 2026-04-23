@@ -7,7 +7,9 @@ import threading
 clientSocket = socket(AF_INET, SOCK_STREAM)
 
 # Connect to the server using the provided IP address and port
-serverName = 'localhost'  # change to server IP for over-the-air mode
+serverName = input("Enter server IP address: ").strip()
+if not serverName:
+    serverName = "127.0.0.1"
 clientSocket.connect((serverName, 12000))
 
 # Wait for the server to request a username

@@ -2,7 +2,9 @@ from socket import *
 import threading
 
 # 1: Create a TCP client socket
-serverName = "127.0.0.1"
+serverName = input("Enter server IP address: ").strip()
+if not serverName:
+    serverName = "127.0.0.1"
 serverPort = 12001
 clientSocket = socket(AF_INET, SOCK_STREAM)
 
