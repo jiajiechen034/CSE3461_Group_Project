@@ -19,13 +19,17 @@ print("Local address:", clientSocket.getsockname())
 # 4: Background thread to receive messages
 def receiveMessages():
     while True:
-        message = clientSocket.recv(1024)
+        try:
+            message = clientSocket.recv(1024)
 
-        if not message:
-            print("Server disconnected")
+            if not message:
+                print("Server disconnected")
+                break
+
+            print("Received:", message.decode())
+        except:
+            print("Disconnected from server")
             break
-
-        print("Received:", message.decode())
 
 
 thread = threading.Thread(target=receiveMessages)

@@ -38,6 +38,7 @@ def receive_messages():
             break
 
 recv_thread = threading.Thread(target=receive_messages)
+recv_thread.daemon = True
 recv_thread.start()
 
 # In the main thread, repeatedly accept and send user input
@@ -46,11 +47,11 @@ while True:
     try:
         # Accept user input from the keyboard
         message = input()
- 
+
         # To send a private message, type in the format @username message
         # Send the message to the server for delivery to the target user
         clientSocket.send(message.encode())
- 
+
     except:
         # If error occurs, close the socket connection
         clientSocket.close()

@@ -43,25 +43,28 @@ def updateAndPrintDelayMetrics(delay):
 
 # 9: Client Handler (in each thread):
 def handleClient(connectionSocket, addr):
-
     # 10: Continuously receive messages from the assigned client
     while True:
-        message = connectionSocket.recv(1024)
+        try:
+            message = connectionSocket.recv(1024)
 
-        if not message:
+            if not message:
+                break
+
+            # 11: For each received message, forward it to all other connected clients
+            for client in clients:
+                if client != connectionSocket:
+                    # Feature 3: simulate server-side latency/jitter before forwarding
+                    delay = random.uniform(0.2, 1.0)
+                    time.sleep(delay)
+                    client.send(message)
+                    updateAndPrintDelayMetrics(delay)
+        except:
             break
 
-        # 11: For each received message, forward it to all other connected clients
-        for client in clients:
-            if client != connectionSocket:
-                # Feature 3: simulate server-side latency/jitter before forwarding
-                delay = random.uniform(0.2, 1.0)
-                time.sleep(delay)
-                client.send(message)
-                updateAndPrintDelayMetrics(delay)
-
     # 12: If the client disconnects, close the connection and remove it from the list
-    clients.remove(connectionSocket)
+    if connectionSocket in clients:
+        clients.remove(connectionSocket)
     connectionSocket.close()
     print("Disconnected:", addr)
 
