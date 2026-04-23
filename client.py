@@ -5,7 +5,7 @@ import threading
 serverName = input("Enter server IP address: ").strip()
 if not serverName:
     serverName = "127.0.0.1"
-serverPort = 12001
+serverPort = 12000
 clientSocket = socket(AF_INET, SOCK_STREAM)
 
 # 2: Connect to the server using the server’s IP address and port

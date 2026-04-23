@@ -4,7 +4,7 @@ import time
 import random
 
 # 1: Create a TCP server socket and bind it to an IP address and port
-serverPort = 12001
+serverPort = 12000
 serverSocket = socket(AF_INET, SOCK_STREAM)
 serverSocket.setsockopt(SOL_SOCKET, SO_REUSEADDR, 1)
 serverSocket.bind(('', serverPort))
