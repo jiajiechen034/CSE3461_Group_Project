@@ -19,10 +19,11 @@ The server routes the message only to the intended recipient using a username-to
 
 ### 3. Delay/Jitter Simulation
 An additional networking feature was implemented to simulate real-world conditions:
-    - Random delay is added before forwarding messages
-    - Metrics are tracked, including:
-        - Total delayed messages
-        - Average delay
-        - Minimum and maximum delay       
-    This helps analyze how latency affects communication performance.
+- Random delay is added before forwarding messages
+- Metrics are tracked, including:
+    -  Total delayed messages
+    -  Average delay
+    -  Minimum and maximum delay
+
+This helps analyze how latency affects communication performance.
 [View Assignment PDF](./Project_assignment_SP26.pdf)
